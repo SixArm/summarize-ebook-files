@@ -1,0 +1,40 @@
+#!/bin/sh
+
+##
+# Summarize ebooks files in a given directory and subdirectories.
+#
+# This script generates AI agent files:
+#
+#  - plan.md: the high-level AI agent instructions
+#  - tasks.md: the low-level list of each ebook file to process
+#
+# Syntax:
+#
+#     summarize-ebook-files.sh <directory>
+#
+# Example: 
+#
+#     summarize-ebook-files.sh ~/path/to/ebooks
+#
+# Output files:
+#
+#     plan.md
+#     tasks.md
+##
+
+set -euf
+
+cat << EOF > plan.md
+Summarize ebooks in files.
+- Read "tasks.md" for the list of tasks.
+- Process ebook files that have file extensions "epub" or "pdf"; skip non-book files such as .DS_Store, .tgz, .zip, etc.
+- Process all ebook files sequentially; Work through the entire list one by one.
+- Create each book summary as comprehensive (1-2 pages) with detailed breakdowns with key concepts, examples, and practical applications.
+- Update the file "tasks.md" after completing each task.
+EOF
+
+find $1 -type f -name '*.epub' -o -name '*.pdf' | 
+while read -r x; do 
+    dir=$(dirname "$x")
+    echo "- summarize the ebook file \"$x\" then save output to a file \"$dir/index.md\""
+done > tasks.md
