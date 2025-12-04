@@ -1,0 +1,3 @@
+#!/bin/sh
+set -euf
+find . -type f -name '*.epub' -o -name '*.pdf' -execdir test ! -f index.md \; -print

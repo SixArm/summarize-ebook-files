@@ -25,12 +25,11 @@
 set -euf
 
 cat << EOF > plan.md
-Summarize ebooks in files.
-- To find the files to process, run the command: find . -type f -name '*.epub' -o -name '*.pdf' -execdir test ! -f index.md \; -print
-- Process ebook files that have file extensions "epub" or "pdf"; skip non-book files such as .DS_Store, .tgz, .zip, etc.
+Summarize ebook files.
+- To find the files to process, run the command: bash(find . -type f -name '*.epub' -o -name '*.pdf' -execdir test ! -f index.md \; -print)
+- Create each ebook summary as comprehensive (1-2 pages) with detailed breakdowns with key concepts, examples, and practical applications.
 - An epub file is a zipped collection of HTML files; a pdf file is a fixed-layout document.
 - You are authorized to use any program or method or library to read and summarize ebook files, such as unzip, untar, pandoc, PyMuPDF, ebooklib, etc.
-- Create each ebook summary as comprehensive (1-2 pages) with detailed breakdowns with key concepts, examples, and practical applications.
 - Use markdown formatting for the summary, including headings, subheadings, bullet points, and code blocks where appropriate.
 - Save the summary to a file named "index.md" in the same directory as the ebook file. 
 - Continue processing files until they are complete. Do not pause or wait for further instructions.
